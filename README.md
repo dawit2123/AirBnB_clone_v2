@@ -1,97 +1,154 @@
-# AirBnB clone - MySQL
+# AirBnB Clone (HBNB)
 
-> This directory contains all the tasks of the project "0x02. AirBnB clone - MySQL" at [Holberton School](https://www.holbertonschool.com "Holberton School.")
+[![CodeStyle](https://github.com/B3zaleel/AirBnB_clone_v2/actions/workflows/codestyle.yml/badge.svg)](https://github.com/B3zaleel/AirBnB_clone_v2/actions/workflows/codestyle.yml)
+![Latest commit](https://img.shields.io/github/last-commit/B3zaleel/AirBnB_clone_v2/master?style=round-square)
 
-![GitHub repo size](https://img.shields.io/github/repo-size/luismvargasg/AirBnB_clone_v2?style=for-the-badge) ![GitHub last commit](https://img.shields.io/github/last-commit/luismvargasg/AirBnB_clone_v2?style=for-the-badge) ![GitHub contributors](https://img.shields.io/github/contributors/luismvargasg/AirBnB_clone_v2?style=for-the-badge) [![Luis Miguel Vargas](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fluismvargasg1)](https://twitter.com/luismvargasg1) [![Robinson Montes](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fmecomontes)](https://twitter.com/mecomontes)
+## Description
 
-## Table of Contents
+This repository contains the initial stage of a student project to build a clone of the AirBnB website. This stage implements a backend interface, or console, to manage program data. Console commands allow the user to create, update, and destroy objects, as well as manage file storage. Using a system of JSON serialization/deserialization, storage is persistent between sessions.
 
-- [AirBnB clone - MySQL](#airbnb-clone---mysql)
-  - [Table of Contents](#table-of-contents)
-  - [Project General Objectives](#project-general-objectives)
-  - [Project Description](#project-description)
-  - [Directory Files Description](#directory-files-description)
-  - [Prerequisites](#prerequisites)
-  - [Built With](#built-with)
-  - [AUTHORS](#authors)
-  - [License](#license)
-  - [Acknowledgments](#acknowledgments)
+---
 
-## Project General Objectives
 
-* What is Unit testing and how to implement it in a large project.
-* What is *args and how to use it.
-* What is **kwargs and how to use it.
-* How to handle named arguments in a function.
-* How to create a MySQL database.
-* How to create a MySQL user and grant it privileges.
-* What ORM means.
-* How to map a Python Class to a MySQL table.
-* How to handle 2 different storage engines with the same codebase.
-* How to use environment variables.
+## The Command Interpreter
 
-## Project Description
+The command interpreter provides a simple REPL (Read-Evaluate-Print-Loop) for interacting with the models in this project only. It can be used to test the functionality of the supported storage engines as well. You can find some examples of its usage [here](#examples).
 
-The Airbnb clone is one of the main projects at Holberton School, it's a long term project that we need to accomplish by building up trough a series of small modules or pieces. This project is thinking as a whole for a software developer, to learn and become a full-stack developer, gluing alltogether the infrastructure of the Airbnb from back to front, including databases, static and dynamic content, web frameworks, APIs, and web infrastructure.
-The first step that we need to build is "the console" or the command interpreter, this is meant to be a tool to validate or manipulate the storage system, through the console we are gonna be able of:
-* Create our data model.
-* Manage (create, update, destroy, etc) objects.
-* Store and persist objects to a file (JSON file)
+### How To Use
 
-This storage engine will give us an abstraction between “My object” and “How they are stored and persisted”.
+1. First clone this repository.
 
-You can find this in: [AirBnB clone - The console](https://github.com/luismvargasg/AirBnB_clone)
+2. Once the repository is cloned locate the "[console.py](console.py)" file and run it as follows:
+   ```powershell
+   ➜  AirBnB_clone_v2 git:(master) ✗ ./console.py
+   ```
 
-For the second part of the project we should build the database connection through SQLAlchemy, the ORM of Python.
+4. When this command is run the following prompt should appear:
+   ```
+   (hbnb)
+   ```
 
-Using a MySQL storage we replace the file storage (JSON file) by a Database storage and we map your models to a table in database by using an O.R.M.
+5. This prompt designates that you are in the "HBnB" console. There are a variety of commands available within the console program.
 
-## Directory Files Description
+### Supported Commands
 
-| **File** | **Description** |
-|----------|-----------------|
-| [Console](./console.py) | Program that contains the entry point of the command interpreter. |
-| [MySQL setup dev file](./setup_mysql_dev.sql) | Script that prepares a MySQL server for the project. |
-| [MySQL setup test file](./setup_mysql_test.sql) | Script that prepares a MySQL server for the project. |
-| [Engine DBStorage](./models/engine/db_storage.py) | Module that serializes instances in a JSON file and deserializes JSON file to instances. |
-| [File Storage](./models/engine/db_storage.py) | Module that serializes instances in a JSON file and deserializes JSON file to instances. |
-| [BaseModel](./models/base_model.py) | Class BaseModel that defines all common attributes/methods for other classes. |
-| [City](./models/city.py) | File that contains the City class that inherit from BaseModel. |
-| [State](./models/state.py) | File that contains the State class that inherit from BaseModel. |
-| [User](./models/user.py) | File that contains the User class that inherit from BaseModel. |
-| [Place](./models/place.py) | File that contains the Place class that inherit from BaseModel. |
-| [Review](./models/review.py) | File that contains the Review class that inherit from BaseModel. |
-| [Amenity](./models/amenity.py) | File that contains the Amenity class that inherit from BaseModel. |
-| [init file](./models/__init__.py) | File that defines a Python Package. |
-| [AUTHORS](./AUTHORS) | File that contains the AUTHORS of this project. |
-| [TESTS](./tests) | Directory that contains all the Unittest files to test the different classes and methods. |
+These are commands that can be executed by the command interpreter. They have the format `command [argument]...` but you could also use the format `Model.command([argument]...)`, with the exception of the first 3 commands below.
 
-## Prerequisites
+| Format | Description |
+|:-|:-|
+| `help [command]` | Prints helpful information about a command (`command`). If `command` is not provided, it prints the help menu. |
+| `quit` | Closes the command interpreter. |
+| `EOF` | Closes the command interpreter. |
+| `create Model [prop_key=prop_value]...` | Creates a new instance of the `Model` class with the given properties. `prop_value` can be a double-quoted string with double-quotes escaped and spaces replaced with underscores. `prop_value` can also be a float or integer. |
+| `count Model` | Prints the number of instances of the `Model` class. |
+| `show Model id` | Prints the string representation of an instance of the `Model` class with the given `id`. |
+| `destroy Model id` | Deletes an instance of the `Model` class with the given `id`. |
+| `all [Model]` | Prints a list containing the string representation of all instances of the `Model` class. `Model` is optional and if it isn't provided, all the availble objects are printed. |
+| `update Model id attr_name attr_value` | Updates an instance of the `Model` class with the given `id` by assigning the attribute value `attr_value` to its attribute named `attr_name`. Attributes having the names `__class__`, `id`, `created_at`, and `updated_at` are silently ignored. |
+| `update Model id dict_repr` | Updates an instance of `Model` having the given `id` by storing the key, value pairs in the given `dict_repr` dictionary as its attributes. The keys `__class__`, `id`, `created_at`, and `updated_at` are silently ignored. |
+<br>
 
-This program was made and tested using Ubuntu 14.04.3 LTS and Python 3.4.3 So we recommend you to test this command interpreter under this conditions.
+### Supported Models
 
-## Built With
+These are the models that are currently available.
 
-* Ubuntu 14.04.3 LTS Running on a Virtual Machine "Vagrant"
-* GNU Emacs 24.3.1
-* Python 3.4.3
+| Class | Description |
+|:-|:-|
+| BaseModel | A(n abstract) class that represents the base class for all models (all models are instances of this class). |
+| User | Represents a user account. |
+| State | Represents the geographical state in which a _User_ lives or a _City_ belongs to. |
+| City | Represents an urban area in a _State_. |
+| Amenity | Represents a useful feature of a _Place_. |
+| Place | Represents a building containing rooms that can be rented by a _User_. |
+| Review | Represents a review of a _Place_. |
 
-## AUTHORS
+### Environment Variables
 
-**Luis Miguel Vargas**
++ `HBNB_ENV`: The running environment. It can be `dev` or `test`.
++ `HBNB_MYSQL_USER`: The MySQL server username.
++ `HBNB_MYSQL_PWD`: The MySQL server password.
++ `HBNB_MYSQL_HOST`: The MySQL server hostname.
++ `HBNB_MYSQL_DB`: The MySQL server database name.
++ `HBNB_TYPE_STORAGE`: The type of storage used. It can be `file` (using `FileStorage`) or `db` (using `DBStorage`).
 
-* [Github @luismvargasg](https://github.com/luismvargasg)
-* [LinkedIn - Luis Miguel Vargas](https://www.linkedin.com/in/luismvargasg/)
+### Examples
 
-**Robinson Montes**
+<h3>Primary Command Syntax</h3>
 
-* [Github @mecomonteshbtn](https://github.com/mecomonteshbtn)
-* [LinkedIn - Robinson Montes Gómez](https://www.linkedin.com/in/robinson-montes-g%C3%B3mez/)
+###### Example 0: Create an object
+Usage: create <class_name>
+```
+(hbnb) create BaseModel
+```
+```
+(hbnb) create BaseModel
+3aa5babc-efb6-4041-bfe9-3cc9727588f8
+(hbnb)
+```
 
-## License
+###### Example 1: Show an object
+Usage: show <class_name> <_id>
 
-Opensource project.
+```
+(hbnb) show BaseModel 3aa5babc-efb6-4041-bfe9-3cc9727588f8
+[BaseModel] (3aa5babc-efb6-4041-bfe9-3cc9727588f8) {'id': '3aa5babc-efb6-4041-bfe9-3cc9727588f8', 'created_at': datetime.datetime(2020, 2, 18, 14, 21, 12, 96959),
+'updated_at': datetime.datetime(2020, 2, 18, 14, 21, 12, 96971)}
+(hbnb)
+```
 
-## Acknowledgments
+###### Example 2: Destroy an object
 
-* Project made at Holberton School - Colombia
+Usage: destroy <class_name> <_id>
+```
+(hbnb) destroy BaseModel 3aa5babc-efb6-4041-bfe9-3cc9727588f8
+(hbnb) show BaseModel 3aa5babc-efb6-4041-bfe9-3cc9727588f8
+** no instance found **
+(hbnb)
+```
+###### Example 3: Update an object
+Usage: update <class_name> <_id>
+```
+(hbnb) update BaseModel b405fc64-9724-498f-b405-e4071c3d857f first_name "person"
+(hbnb) show BaseModel b405fc64-9724-498f-b405-e4071c3d857f
+[BaseModel] (b405fc64-9724-498f-b405-e4071c3d857f) {'id': 'b405fc64-9724-498f-b405-e4071c3d857f', 'created_at': datetime.datetime(2020, 2, 18, 14, 33, 45, 729889),
+'updated_at': datetime.datetime(2020, 2, 18, 14, 33, 45, 729907), 'first_name': 'person'}
+(hbnb)
+```
+<h3>Alternative Syntax</h3>
+
+###### Example 0: Show all User objects
+Usage: <class_name>.all()
+```
+(hbnb) User.all()
+["[User] (99f45908-1d17-46d1-9dd2-b7571128115b) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 34, 92071), 'id': '99f45908-1d17-46d1-9dd2-b7571128115b', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 34, 92056)}", "[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
+```
+
+###### Example 1: Destroy a User
+Usage: <class_name>.destroy(<_id>)
+```
+(hbnb) User.destroy("99f45908-1d17-46d1-9dd2-b7571128115b")
+(hbnb)
+(hbnb) User.all()
+(hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
+```
+###### Example 2: Update User (by attribute)
+Usage: <class_name>.update(<_id>, <attribute_name>, <attribute_value>)
+```
+(hbnb) User.update("98bea5de-9cb0-4d78-8a9d-c4de03521c30", name "Todd the Toad")
+(hbnb)
+(hbnb) User.all()
+(hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'name': 'Todd the Toad', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
+```
+###### Example 3: Update User (by dictionary)
+Usage: <class_name>.update(<_id>, <dictionary>)
+```
+(hbnb) User.update("98bea5de-9cb0-4d78-8a9d-c4de03521c30", {'name': 'Fred the Frog', 'age': 9})
+(hbnb)
+(hbnb) User.all()
+(hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'name': 'Fred the Frog', 'age': 9, 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
+```
+<br>
+
+<!-- ## Testing -->
+
+**NOTE:** Before you push any commit, please run the script `./test.bash` to ensure that no tests are failing and your code complies with this project's styling standard.
